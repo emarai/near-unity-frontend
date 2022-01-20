@@ -125,6 +125,10 @@ function App() {
     };
   }, []);
 
+  function sendAccountId() {
+    unityContext.send("GameManager", "setAccountId", currentUser.accountId);
+  }
+
   function handleOnUnityCanvas(canvas) {
     canvas?.setAttribute?.("role", "unityCanvas");
   }
@@ -170,7 +174,7 @@ function App() {
               <Unity className="unity-canvas" unityContext={unityContext} />
             </div>
             {/* Displaying some output values */}
-            {currentUser && <p>{`AccountId: ${currentUser?.accountId}`}</p>}
+            {currentUser && sendAccountId() && <p>{`AccountId: ${currentUser?.accountId}`}</p>}
             {balance != 0 && <p>{`Balance: ${balance}`}</p>}
           </Fragment>
         )}
